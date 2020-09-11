@@ -1,0 +1,13 @@
+export(mle1factor, mle2factor, mle2factor.bvn, M2.1F, 
+       M2.2F, r1factor, r2factor, 
+       select1F, select2F, continuous2ordinal, count2ordinal, 
+       semicorr, discrepancy, par2tau, tau2par, vuong.1f, vuong.2f)
+
+import(statmod)
+import(abind)
+import(utils) 
+import(polycor)
+importFrom("stats", "df", "dnbinom", "dnorm", "dt", "integrate",
+             "na.omit", "nlm", "pchisq", "pnbinom", "pnorm", "pt",
+             "qnorm", "qt", "sd", "uniroot", "var", "runif", 
+           "varimax", "factanal", "cor", "median")
