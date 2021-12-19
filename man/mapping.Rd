@@ -22,11 +22,11 @@ Kendall's tau or copula parameter.
 }
 
 \references{
-Joe H (1997) \emph{Multivariate Models and Dependence Concepts}. Chapman & Hall
+Joe H (1997) \emph{Multivariate Models and Dependence Concepts}. Chapman & Hall, London.
 
-Joe H (2014) \emph{Dependence Modeling with Copulas}. Chapman & Hall/CRC.
+Joe H (2014) \emph{Dependence Modeling with Copulas}. Chapman & Hall, London.
 
-Joe H (2014) \emph{CopulaModel:  Dependence Modeling with Copulas}. Software for book: \emph{Dependence Modeling with Copulas}, Chapman & Hall/CRC, 2014.
+Joe H (2014) \emph{CopulaModel:  Dependence Modeling with Copulas}. Software for book: \emph{Dependence Modeling with Copulas}, Chapman & Hall, London 2014.
 }
 
 \examples{

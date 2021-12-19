@@ -19,17 +19,42 @@ dbvn=function(u,v,theta,param=F){
   v[v==0]=.0000000000001
   
   if(param){cpar=((exp(theta)-1)/(exp(theta)+1))}else{cpar=theta}
-
-x1=qnorm(u); x2=qnorm(v)
-qf=x1^2+x2^2-2*cpar*x1*x2
-qf=qf/(1-cpar^2)
-con=sqrt(1-cpar^2)*(2*pi)
-pdf=exp(-.5*qf)/con
-pdf=pdf/(dnorm(x1)*dnorm(x2))
-pdf
+  
+  x1=qnorm(u); x2=qnorm(v)
+  qf=x1^2+x2^2-2*cpar*x1*x2
+  qf=qf/(1-cpar^2)
+  con=sqrt(1-cpar^2)*(2*pi)
+  pdf=exp(-.5*qf)/con
+  pdf=pdf/(dnorm(x1)*dnorm(x2))
+  pdf
 }
 #=======
 #Conditional cdf for Student-t copula
+#Conditional cdf for Student-t copula
+pcond.t = function(v,u,theta,param=F){
+  
+  u[u==1]=.9999999999999
+  v[v==1]=.9999999999999
+  u[u==0]=.0000000000001
+  v[v==0]=.0000000000001
+  
+  if(param){cpar=((exp(theta)-1)/(exp(theta)+1))}else{cpar=theta}
+  #  df=1
+  tem = qt(cbind(u,v),df)
+  
+  x=tem[,1]
+  y=tem[,2]
+  
+  term1=(df+x*x)*(1-cpar*cpar)/(df+1)
+  term2 = sqrt(term1)
+  quant = (y-cpar*x)/term2
+  cond.cdf = pt(quant,df+1)
+  cond.cdf[ v <= 0 | u <= 0 |  u>= 1] <- 0
+  cond.cdf[ v == 1 ] <- 1
+  cond.cdf
+}
+
+
 pcond.t1 = function(v,u,theta,param=F){
   
   u[u==1]=.9999999999999
@@ -77,7 +102,7 @@ pcond.t2 = function(v,u,theta,param=F){
 }
 
 pcond.t3 = function(v,u,theta,param=F){
-
+  
   u[u==1]=.9999999999999
   v[v==1]=.9999999999999
   u[u==0]=.0000000000001
@@ -240,6 +265,31 @@ pcond.t9 = function(v,u,theta,param=F){
 
 
 # the t copula density
+dtcop=function(u,v,theta,param=F){    
+  u[u==1]=.9999999999999
+  v[v==1]=.9999999999999
+  u[u==0]=.0000000000001
+  v[v==0]=.0000000000001
+  
+  if(param){cpar=((exp(theta)-1)/(exp(theta)+1))}else{cpar=theta}
+  #df=1
+  tem1=cbind(u,v)
+  tem2=qt(tem1,df)
+  tem3=dt(tem2,df)
+  x<-tem2[,1]
+  y<-tem2[,2]
+  z<-tem3[,1]
+  w<-tem3[,2]
+  x2=x*x
+  y2=y*y
+  cpar2=cpar*cpar
+  val<-df/2*(1+(x2+y2-2*cpar*x*y)/(df*(1-cpar2)))^(-(df+2)/2)/(df*pi*z*w*sqrt(1-cpar2))
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+
 dtcop1=function(u,v,theta,param=F){    
   u[u==1]=.9999999999999
   v[v==1]=.9999999999999
@@ -293,23 +343,23 @@ dtcop3=function(u,v,theta,param=F){
   v[v==1]=.9999999999999
   u[u==0]=.0000000000001
   v[v==0]=.0000000000001
-
-if(param){cpar=((exp(theta)-1)/(exp(theta)+1))}else{cpar=theta}
-df=3
-tem1=cbind(u,v)
-tem2=qt(tem1,df)
-tem3=dt(tem2,df)
-x<-tem2[,1]
-y<-tem2[,2]
-z<-tem3[,1]
-w<-tem3[,2]
-x2=x*x
-y2=y*y
-cpar2=cpar*cpar
-val<-df/2*(1+(x2+y2-2*cpar*x*y)/(df*(1-cpar2)))^(-(df+2)/2)/(df*pi*z*w*sqrt(1-cpar2))
-val[ u <= 0 | v <= 0 ] <- 0
-val[ u >= 1 | v >= 1] <- 0
-val
+  
+  if(param){cpar=((exp(theta)-1)/(exp(theta)+1))}else{cpar=theta}
+  df=3
+  tem1=cbind(u,v)
+  tem2=qt(tem1,df)
+  tem3=dt(tem2,df)
+  x<-tem2[,1]
+  y<-tem2[,2]
+  z<-tem3[,1]
+  w<-tem3[,2]
+  x2=x*x
+  y2=y*y
+  cpar2=cpar*cpar
+  val<-df/2*(1+(x2+y2-2*cpar*x*y)/(df*(1-cpar2)))^(-(df+2)/2)/(df*pi*z*w*sqrt(1-cpar2))
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
 }
 
 dtcop4=function(u,v,theta,param=F){    
@@ -461,7 +511,7 @@ dtcop9=function(u,v,theta,param=F){
 
 #Conditional cdf for Gumbel copula
 pcond.gumbel=function ( v,u, theta , param=F){
-
+  
   u[u>=1]=.9999999999999
   v[v>=1]=.9999999999999
   u[u<=0]=.0000000000001
@@ -491,15 +541,15 @@ dgumbel=function(u,v,theta,param=F){
   u[u<=0]=.0000000000001
   v[v<=0]=.0000000000001
   
-if(param){cpar=exp(theta)+1}else{cpar=theta}
-
-l1= -log(u); l2= -log(v);
-tem1=l1^cpar; tem2=l2^cpar; sm=tem1+tem2; tem=sm^(1./cpar);
-cdf=exp(-tem);
-pdf=cdf*tem*tem1*tem2*(tem+cpar-1.);
-pdf=pdf/(sm*sm*l1*l2*u*v);
-pdf
-
+  if(param){cpar=exp(theta)+1}else{cpar=theta}
+  
+  l1= -log(u); l2= -log(v);
+  tem1=l1^cpar; tem2=l2^cpar; sm=tem1+tem2; tem=sm^(1./cpar);
+  cdf=exp(-tem);
+  pdf=cdf*tem*tem1*tem2*(tem+cpar-1.);
+  pdf=pdf/(sm*sm*l1*l2*u*v);
+  pdf
+  
 }
 #=======
 pcond.frank=function ( v,u, cpar,param=F){
@@ -507,65 +557,65 @@ pcond.frank=function ( v,u, cpar,param=F){
   v[v==1]=.9999999999999
   u[u==0]=.0000000000001
   v[v==0]=.0000000000001
-
-cpar[cpar == 0] = 1e-10
-cpar1 = 1 - exp(-cpar)
-tem = 1 - exp(-cpar * u)
-ccdf = (1 - tem)/(cpar1/(1 - exp(-cpar * v)) - tem)
-ccdf
+  
+  cpar[cpar == 0] = 1e-10
+  cpar1 = 1 - exp(-cpar)
+  tem = 1 - exp(-cpar * u)
+  ccdf = (1 - tem)/(cpar1/(1 - exp(-cpar * v)) - tem)
+  ccdf
 }
 
 dfrank=function(u,v,cpar,param=F){     
-u[u==1]=.9999999
-v[v==1]=.9999999
-u[u==0]=.0000001
-v[v==0]=.0000001
-
-t1=1.-exp(-cpar);
-tem1=exp(-cpar*u); tem2=exp(-cpar*v);
-pdf=cpar*tem1*tem2*t1;
-tem=t1-(1.-tem1)*(1.-tem2);
-pdf=pdf/(tem*tem);
-pdf
+  u[u==1]=.9999999
+  v[v==1]=.9999999
+  u[u==0]=.0000001
+  v[v==0]=.0000001
+  
+  t1=1.-exp(-cpar);
+  tem1=exp(-cpar*u); tem2=exp(-cpar*v);
+  pdf=cpar*tem1*tem2*t1;
+  tem=t1-(1.-tem1)*(1.-tem2);
+  pdf=pdf/(tem*tem);
+  pdf
 }
 #========
 
 pcond.joe=function (v, u, theta,param=F){    
-u[u==1]=.9999999
-v[v==1]=.9999999
-u[u==0]=.0000001
-v[v==0]=.0000001
-
-if(param){cpar=exp(theta)+1}else{cpar=theta}
-
-temv = (1 - v)^cpar
-temu = (1 - u)^cpar
-ccdf = 1 + temv/temu - temv
-ccdf = ccdf^(-1 + 1/cpar)
-ccdf = ccdf * (1 - temv)
-ccdf
+  u[u==1]=.9999999
+  v[v==1]=.9999999
+  u[u==0]=.0000001
+  v[v==0]=.0000001
+  
+  if(param){cpar=exp(theta)+1}else{cpar=theta}
+  
+  temv = (1 - v)^cpar
+  temu = (1 - u)^cpar
+  ccdf = 1 + temv/temu - temv
+  ccdf = ccdf^(-1 + 1/cpar)
+  ccdf = ccdf * (1 - temv)
+  ccdf
 }
 
 
 djoe=function (u, v, theta,param=F){ 
-u[u==1]=.9999999
-v[v==1]=.9999999
-u[u==0]=.0000001
-v[v==0]=.0000001
-
-if(param){cpar=exp(theta)+1}else{cpar=theta}
-
-f1 = 1 - u
-f2 = 1 - v
-tem1 = f1^cpar
-tem2 = f2^cpar
-sm = tem1 + tem2 - tem1 * tem2
-tem = sm^(1/cpar)
-pdf = tem * ((cpar - 1) * tem1 * tem2 + tem1 * tem1 * tem2 +
-               tem1 * tem2 * tem2 - tem1 * tem1 * tem2 * tem2)
-pdf = pdf/(sm * sm)
-pdf = pdf/(f1 * f2)
-pdf
+  u[u==1]=.9999999
+  v[v==1]=.9999999
+  u[u==0]=.0000001
+  v[v==0]=.0000001
+  
+  if(param){cpar=exp(theta)+1}else{cpar=theta}
+  
+  f1 = 1 - u
+  f2 = 1 - v
+  tem1 = f1^cpar
+  tem2 = f2^cpar
+  sm = tem1 + tem2 - tem1 * tem2
+  tem = sm^(1/cpar)
+  pdf = tem * ((cpar - 1) * tem1 * tem2 + tem1 * tem1 * tem2 +
+                 tem1 * tem2 * tem2 - tem1 * tem1 * tem2 * tem2)
+  pdf = pdf/(sm * sm)
+  pdf = pdf/(f1 * f2)
+  pdf
 }
 #===========================================================
 #===========================================================
@@ -762,7 +812,7 @@ djoe.270=function (u, v, theta,param=F){
   v=1-v
   f1 = 1 - u
   f2 = 1 - v
-
+  
   if(param){cpar=exp(theta)+1}else{cpar=theta}
   
   tem1 = f1^cpar
@@ -1164,6 +1214,21 @@ val[ u >= 1 | v >= 1] <- 0
 val
 }
 #===========================================
+pcond.2t<-function(u,v,r){
+  #df=1
+  qtv<-qt(v,df)
+  tem1<-qt(u,df)-r*qtv
+  tem<-(1-r^2)*(df+qtv^2)/(df+1)
+  tem2<-sqrt(tem)
+  tem3<--r*(df+qtv^2)/(df+1)/tem2
+  tem4<-(-qtv*tem2 - tem1*tem3)/tem
+  val<-dt(tem1/tem2,df+1)*tem4
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+
 pcond.2t1<-function(u,v,r){
   df=1
   qtv<-qt(v,df)
@@ -1340,18 +1405,18 @@ val
 pcond.2gumbel.90=function(v,u,a)
 { 
   v=1-v
-val<--pcond.2gumbel(v,u,a)
-val[ v <= 0 | u <= 0 ] <- 0
-val[ v >= 1 | u >= 1] <- 0
-val
+  val<--pcond.2gumbel(v,u,a)
+  val[ v <= 0 | u <= 0 ] <- 0
+  val[ v >= 1 | u >= 1] <- 0
+  val
 }
 #===========================================
 pcond.2gumbel.270=function(v,u,a){ 
   u=1-u
-val<-pcond.2gumbel(v,u,a)
-val[ v <= 0 | u <= 0 ] <- 0
-val[ v >= 1 | u >= 1] <- 0
-val
+  val<-pcond.2gumbel(v,u,a)
+  val[ v <= 0 | u <= 0 ] <- 0
+  val[ v >= 1 | u >= 1] <- 0
+  val
 }
 #===========================================
 pcond.2joe=function(v,u,cpar){
@@ -1388,10 +1453,10 @@ val
 pcond.2joe.90 = function(v,u,cpar)
 { 
   v=1-v
-val<--pcond.2joe(v,u,cpar)
-val[ v <= 0 | u <= 0 ] <- 0
-val[ v >= 1 | u >= 1] <- 0
-val
+  val<--pcond.2joe(v,u,cpar)
+  val[ v <= 0 | u <= 0 ] <- 0
+  val[ v >= 1 | u >= 1] <- 0
+  val
 }
 #===========================================
 pcond.2joe.270=function(v,u,cpar){
@@ -1791,6 +1856,235 @@ pcond.2sbb10.theta=function(v,u,cpar){
   val
 }
 
+
+#derivative of copula densities wrt to parameters
+d2gumbel=function(u,v,th){
+  lu=-log(u)
+  lv=-log(v)
+  lvth=(lv)^th
+  luth=(lu)^th
+  lulv=luth+lvth
+  ith=1/th
+  lulvth=(lulv)^(ith)
+  llu=log(lu)
+  llv=log(lv)
+  lluth=luth *llu
+  llvth=lvth *llv
+  term2=(lu)^(-1+th)*(lulv)^(-2+ith)
+  term3=(-1+th+lulvth)
+  term4=(-1+th+lulvth)
+  term5=1/(u*v)*exp(-lulvth)*term2*(lv)^(-1+th)
+  term6=(lulv)^(-1+ith)
+  term7=(th*lluth-(lulv)*log(lulv)+th*llvth)
+  term8=(-1+th+lulvth)
+  term9=((-2+ith) *(lluth+llvth))
+  term10=-(log(lulv)/th^2)
+  term11=(-1+th+lulvth) 
+  term12=(lulv)^(-1+ith)
+  term13=(th *lluth-(lulv)* log(lulv)+th *llvth)
+  term14=1+term3*llu+term4*llv+(1/(th^2))*term6 *term7
+  term15=(1/(th^2))*term8* term12 * term13
+  val=term5*(term14-term15+term11*(term10+term9/lulv))
+  val
+}
+
+d2frank=function(u,v,cpar){
+  uv=u + v  
+  nuv=- u + v
+  uvneg= u - v
+  cparuv=cpar*(uv)
+  denom=(-exp(cpar) + exp(cpar + cpar*u) - 
+           exp(cparuv) + exp(cpar + cpar*v))^3
+  tem1=cpar*(1+nuv)
+  tem2=exp(cpar*(2 + v))
+  tem3=exp(cpar*(2 + u))
+  tem4=cpar*(-1 + uv)
+  tem5=(tem2*(1 + cpar*(uvneg)) + 
+          exp(cpar + cpar*u)*(-1 + cpar*(1 + uvneg)) + 
+          tem3*(1 + cpar*(nuv)) + 
+          exp(cpar + cpar*v)*(-1 + tem1) + 
+          exp(cpar*(1 + uv))*(-1 + cpar*(-2 + uv)) + 
+          exp(cparuv)*(1 - tem4) + 
+          exp(cpar)*(1 + tem4) - 
+          exp(2*cpar)*(1 + cparuv))
+  
+  val=(exp(cpar*(1 + uv))*tem5)/denom
+  val  
+}
+
+d2sgumbel<-function(u,v,a)
+{ u=1-u
+v=1-v
+val<-d2gumbel(u,v,a)
+val[ u <= 0 | v <= 0 ] <- 0
+val[ u >= 1 | v >= 1] <- 0
+val
+}
+
+d2gumbel.90<-function(u,v,a){
+  u=1-u
+  val<-d2gumbel(u,v,a)
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+d2gumbel.270<-function(u,v,a){
+  v=1-v
+  val<-d2gumbel(u,v,a)
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+
+#library(VineCopula)
+#d2tcop=function(u1,u2,rho){
+#  cop <- BiCop(family = 2, par = rho, par2 = df)
+#  val=NULL
+#  for(i in 1:length(u2)){
+#    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+#  }
+#  val
+#}
+
+#d2tcop1=function(u1,u2,rho){
+#  df=1
+#  cop <- BiCop(family = 2, par = rho, par2 = df)
+#  val=NULL
+#  for(i in 1:length(u2)){
+#    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+#  }
+#  val
+#}
+
+d2tcop2=function(u1,u2,rho){
+  df=2.000000000001
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop3=function(u1,u2,rho){
+  df=3
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop4=function(u1,u2,rho){
+  df=4
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop5=function(u1,u2,rho){
+  df=5
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop6=function(u1,u2,rho){
+  df=6
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop7=function(u1,u2,rho){
+  df=7
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop8=function(u1,u2,rho){
+  df=8
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2tcop9=function(u1,u2,rho){
+  df=9
+  cop <- BiCop(family = 2, par = rho, par2 = df)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+#library(VineCopula)
+d2bvn=function(u1,u2,rho){
+  cop <- BiCop(family = 1, par = rho)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+
+#library(VineCopula)
+d2joe=function(u1,u2,rho){
+  cop <- BiCop(family = 6, par = rho)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2sjoe=function(u1,u2,rho){
+  cop <- BiCop(family = 16, par = rho)
+  val=NULL
+  for(i in 1:length(u2)){
+    val=c(val,BiCopDeriv(u1=u1, u2=u2[i], cop, deriv = "par"))
+  }
+  val
+}
+
+d2joe.90<-function(u,v,a){
+  u=1-u
+  val<-d2joe(u,v,a)
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+d2joe.270<-function(u,v,a){
+  v=1-v
+  val<-d2joe(u,v,a)
+  val[ u <= 0 | v <= 0 ] <- 0
+  val[ u >= 1 | v >= 1] <- 0
+  val
+}
+
+
 #===========================================
 #===========================================
 # Quantile of conditional copulas
@@ -1819,6 +2113,16 @@ qcond.bvn = function (p, v, cpar)
 }
 
 #conditional quantiel for Student-t copula
+qcond.t = function (p, u, cpar){
+  #df=1
+  rho = cpar
+  x2 = qt(p, df + 1)
+  x1 = qt(u, df)
+  tem = x2 * sqrt((df + x1 * x1) * (1 - rho * rho)/(df + 1)) +
+    rho * x1
+  pt(tem, df)
+}
+
 qcond.t1 = function (p, u, cpar){
   df=1
   rho = cpar

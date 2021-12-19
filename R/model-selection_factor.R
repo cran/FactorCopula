@@ -19,6 +19,7 @@ select1F=function(continuous=NULL, ordinal=NULL, count=NULL, copnamesF1, gl){
   #--------------------------------------------------------
   #                 Continuous variables
   #-----------------                    -------------------
+  u=NULL
   if(!is.null(continuous)){
     n<-nrow(continuous)
     u<-apply(continuous,2,rank)/(n+1)
@@ -117,6 +118,7 @@ select2F=function(continuous=NULL, ordinal=NULL, count=NULL, copnamesF1, copname
   #--------------------------------------------------------
   #                 Continuous variables
   #-----------------                    -------------------
+  u=NULL
   if(!is.null(continuous)){
     n<-nrow(continuous)
     u<-apply(continuous,2,rank)/(n+1)

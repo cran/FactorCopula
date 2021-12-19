@@ -439,7 +439,7 @@ r1factor=function(n, d1=0, d2=0, categ, theta, copF1){
   if(d1!=0){
     udat=u[,1:d1]
   }else{
-    udat=0
+    udat=NULL
   }
   #Converting to ordinal data
   if(d2!=0){
@@ -486,7 +486,7 @@ r2factor=function(n, d1=0, d2=0, categ, theta, delta,
   if(d1!=0){
     udat=u[,1:d1]
   }else{
-    udat=0
+    udat=NULL
   }
   #Converting to ordinal data
   if(d2!=0){

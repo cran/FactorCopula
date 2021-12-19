@@ -1,9 +1,8 @@
-\name{select}
-\alias{select}
+\name{Select.Factor}
 \alias{select1F}
 \alias{select2F}
 \title{Model selection of the factor copula models for mixed data}
-\description{An heuristic algorithm that automatically selects the bivariate parametric copula families that link the observed to the latent variables.}
+\description{A heuristic algorithm that automatically selects the bivariate parametric copula families that link the observed to the latent variables.}
 \usage{
 select1F(continuous, ordinal, count, copnamesF1, gl)
 select2F(continuous, ordinal, count, copnamesF1, copnamesF2, gl)
@@ -37,9 +36,9 @@ select2F(continuous, ordinal, count, copnamesF1, copnamesF2, gl)
 
 
 \references{
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2019)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Factor copula models for mixed data.
-\emph{Arxiv e-prints}, <arXiv:1907.07395>. \url{https://arxiv.org/abs/1907.07395}.
+\emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 
 }
 \author{

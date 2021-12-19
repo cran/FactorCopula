@@ -1,5 +1,4 @@
-\name{mle}
-\alias{mle}
+\name{mle.Factor}
 \alias{mle1factor}
 \alias{mle2factor}
 \alias{mle2factor.bvn}
@@ -51,9 +50,9 @@ over the copula parameters  with the univariate parameters/distributions fixed a
 
 
 \references{
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2019)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Factor copula models for mixed data.
-\emph{Arxiv e-prints}, <arXiv:1907.07395>. \url{https://arxiv.org/abs/1907.07395}.
+\emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 
 Krupskii, P. and Joe, H. (2013)
 Factor copula models for multivariate data.

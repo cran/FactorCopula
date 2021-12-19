@@ -1,12 +1,17 @@
 export(mle1factor, mle2factor, mle2factor.bvn, M2.1F, 
        M2.2F, r1factor, r2factor, 
        select1F, select2F, continuous2ordinal, count2ordinal, 
-       semicorr, discrepancy, par2tau, tau2par, vuong.1f, vuong.2f)
+       semicorr, discrepancy, par2tau, tau2par, vuong.1f, vuong.2f,
+       M2Second_order, M2Bifactor, mleSecond_order, mleBifactor,
+       selectSecond_order, selectBifactor, 
+       rSecond_order, rBifactor,vuong_structured)
 
 import(statmod)
 import(abind)
 import(utils) 
 import(polycor)
+import(VineCopula)
+importFrom(matlab,meshgrid)
 importFrom("stats", "df", "dnbinom", "dnorm", "dt", "integrate",
              "na.omit", "nlm", "pchisq", "pnbinom", "pnorm", "pt",
              "qnorm", "qt", "sd", "uniroot", "var", "runif", 

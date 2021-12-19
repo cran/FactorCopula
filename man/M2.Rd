@@ -1,5 +1,4 @@
-\name{M2}
-\alias{M2}
+\name{M2.Factor}
 \alias{M2.1F}
 \alias{M2.2F}
 \title{Goodness-of-fit of factor copula models for mixed data}
@@ -44,9 +43,9 @@ Nikoloulopoulos and Joe (2015) have used the \eqn{M_2} statistic to assess the g
 }
 
 \references{
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2019)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Factor copula models for mixed data.
-\emph{Arxiv e-prints}, <arXiv:1907.07395>. \url{https://arxiv.org/abs/1907.07395}.
+\emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 
 Maydeu-Olivares, A. and Joe, H. (2006).
 Limited information goodness-of-fit testing in multidimensional contingency tables.

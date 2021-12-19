@@ -29,9 +29,9 @@ A matrix containing the following components for semicorr():
 Joe, H. (2014).
 \emph{Dependence Modelling with Copulas}. Chapman and Hall/CRC.
 
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2019)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Factor copula models for mixed data.
-\emph{Arxiv e-prints}, <arXiv:1907.07395>. \url{https://arxiv.org/abs/1907.07395}.
+\emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 }
 
 
