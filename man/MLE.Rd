@@ -92,7 +92,7 @@ categorical.PE <- PE[, 3:5]
 # one-factor copula model
 cop1f.PE <- c("joe", "joe", "rjoe", "joe", "gum")
 est1factor.PE <- mle1factor(continuous.PE, categorical.PE, 
-                            count=NULL, copF1=cop1f.PE, gl, hessian = T)
+                            count=NULL, copF1=cop1f.PE, gl, hessian = TRUE)
 est1factor.PE                    
 #------------------------------------------------
 #------------------------------------------------
@@ -112,16 +112,7 @@ count.GSS <- cbind(CHILDREN, PCHILDREN)
 cop1f.GSS <- c("joe","2rjoe","bvt3","bvt3",
           "rgum","2rjoe","2rgum")
 est1factor.GSS <- mle1factor(continuous.GSS, ordinal.GSS, 
-                        count.GSS, copF1 = cop1f.GSS, gl, hessian = T)
-
-#------------------ Two-factor  -----------------
-# two-factor copula model
-cop1.2f <- c("rgum","rjoe","bvn","1rjoe",
-           "1rjoe","rjoe","gum")
-cop2.2f <- c("gum","2rjoe","rjoe","gum",
-           "bvt5","bvn","2rgum")
-est2factor.GSS <- mle2factor(continuous.GSS, ordinal.GSS,
-          count.GSS, copF1 = cop1.2f, copF2 = cop2.2f, gl, hessian = T)
+                        count.GSS, copF1 = cop1f.GSS, gl, hessian = TRUE)
 
      
 }

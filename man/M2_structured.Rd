@@ -57,17 +57,23 @@ Aristidis K. Nikoloulopoulos \email{a.nikoloulopoulos@uea.ac.uk}
 \donttest{
 #------------------------------------------------
 # Setting quadreture points
-nq <- 25
+nq <- 15
 gl <- gauss.quad.prob(nq)
 #------------------------------------------------
 #                     TAS Data
 #------------------             -----------------
 data(TAS)
-grp1=c(1,3,6,7,9,13,14)
-grp2=c(2,4,11,12,17)
-grp3=c(5,8,10,15,16,18,19,20)
+#using a subset of the data
+#group1: 1,3,6,7,9,13,14
+grp1=c(1,3,6)
+#group2: 2,4,11,12,17
+grp2=c(2,4,11)
+#group3: 5,8,10,15,16,18,19,20
+grp3=c(5,8,10)
 #Rearrange items within testlets
-ydat=TAS[,c(grp1,grp2,grp3)]
+set.seed(123)
+i=sample(1:nrow(TAS),500)
+ydat=TAS[i,c(grp1,grp2,grp3)]
 
 d=ncol(ydat);d
 n=nrow(ydat);n
@@ -85,12 +91,12 @@ ngrp=length(grpsize)
 #                       M2
 #------------------------------------------------
 #BI-FACTOR
-tauX0 = c(0.49,0.16,0.29,0.09,0.47,0.49,0.30,
-           0.46,0.41,0.33,0.29,0.24,0.10,0.16,
-           0.14,0.12,0.03,0.03,0.10,0.10)
-tauXg = c(0.09,0.37,0.23,0.53,0.24,0.32,0.27,
-           0.53,0.58,0.20,0.23,0.25,0.34,0.33,
-           0.30,0.19,0.24,0.29,0.43,0.26)
+tauX0 = c(0.49,0.16,0.29,#0.09,0.47,0.49,0.30,
+          0.46,0.41,0.33,#0.29,0.24,
+          0.10,0.16,0.14)#,0.12,0.03,0.03,0.10,0.10)
+tauXg = c(0.09,0.37,0.23,#0.53,0.24,0.32,0.27,
+          0.53,0.58,0.20,#0.23,0.25,0.34,0.33,
+          0.30,0.19,0.24)#,0.29,0.43,0.26)
 copX0 = rep("bvt2", d)
 copXg = c(rep("rgum", g1), rep("bvt3", g2+g3))
 #converting taus to cpars
@@ -99,18 +105,6 @@ cparXg=mapply(function(x,y) tau2par(x,y),x=copXg,y=tauXg)
 cpar=c(cparX0,cparXg)
 
 m2_Bifactor = M2Bifactor(y=ydat, cpar, copX0, copXg, gl, ngrp, grpsize)
-
-#SECOND-ORDER
-tauX0Xg=c(0.60,0.74,0.18)
-tauXgY=c(0.48,0.23,0.34,0.25,0.51,0.56,0.37,0.64,0.57,
-0.37,0.35,0.32,0.33,0.33,0.29,0.23,0.23,0.25,0.39,0.28)
-cparX0Xg=tau2par("bvn",tauX0Xg)
-cparXgY=tau2par("bvn",tauXgY)
-
-cpar=c(cparX0Xg,cparXgY)
-copX0Xg = rep("bvn", ngrp)
-copXgY = rep("bvn", g1+g2+g3)
-m2_Second_order =  M2Second_order(y=ydat,cpar, copX0Xg, copXgY, gl, ngrp, grpsize)
 
 }
 }

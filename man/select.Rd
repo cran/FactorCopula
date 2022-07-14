@@ -71,29 +71,7 @@ copulasF1 <- rep(list(c("bvn", "bvt3", "bvt5", "frk", "gum",
 out1F.PE <- select1F(continuous.PE, categorical.PE, 
 count=NULL, copulasF1, gl)
 
-#------------------------------------------------
-#------------------------------------------------
-#                     GSS Data
-#------------------             -----------------
-data(GSS)
-attach(GSS)
-continuous.GSS <- cbind(INCOME, AGE)
-ordinal.GSS <- cbind(DEGREE, PINCOME, PDEGREE) 
-count.GSS <- cbind(CHILDREN, PCHILDREN)
 
-#------------------ One-factor  -----------------
-# listing the possible copula candidates:
-d <- ncol(GSS)
-copulasF1 <- rep(list(c("bvn", "bvt3", "bvt5", "frk", "gum",
-"rgum", "rjoe","joe", "1rjoe","2rjoe", "1rgum","2rgum")), d)
-out1F.GSS <- select1F(continuous.GSS, ordinal.GSS, count.GSS, copulasF1, gl)
-
-#------------------ two-factor  -----------------
-# listing the possible copula candidates:
-copulasF1 = copulasF2 = rep(list(c("bvn", "bvt3", "bvt5", "frk",
-"gum", "rgum", "rjoe","joe", "1rjoe","2rjoe", "1rgum","2rgum")), d)
-out2F.GSS <- select2F(continuous.GSS, ordinal.GSS, 
-count.GSS, copulasF1, copulasF2, gl)
 
 
 }

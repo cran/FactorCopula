@@ -68,11 +68,17 @@ gl <- gauss.quad.prob(nq)
 #                     TAS Data
 #------------------             -----------------
 data(TAS)
-grp1=c(1,3,6,7,9,13,14)
-grp2=c(2,4,11,12,17)
-grp3=c(5,8,10,15,16,18,19,20)
+#using a subset of the data
+#group1: 1,3,6,7,9,13,14
+grp1=c(1,3,6)
+#group2: 2,4,11,12,17
+grp2=c(2,4,11)
+#group3: 5,8,10,15,16,18,19,20
+grp3=c(5,8,10)
 #Rearrange items within testlets
-ydat=TAS[,c(grp1,grp2,grp3)]
+set.seed(123)
+i=sample(1:nrow(TAS),500)
+ydat=TAS[i,c(grp1,grp2,grp3)]
 
 d=ncol(ydat);d
 n=nrow(ydat);n
@@ -89,14 +95,8 @@ ngrp=length(grpsize)
 #BI-FACTOR
 copX0 = rep("bvt2", d)
 copXg = c(rep("rgum", g1), rep("bvt3", g2+g3))
-mle_Bifactor =  mleBifactor(y = ydat, copX0, copXg, gl, ngrp, grpsize, hessian=F, print.level=2)
+mle_Bifactor =  mleBifactor(y = ydat, copX0, copXg, gl, ngrp, grpsize, hessian=FALSE, print.level=2)
 
-#SECOND-ORDER
-copX0Xg = rep("bvt5", ngrp)
-copXgY = c(rep("bvt3", g1), rep("bvt2", g2+g3))
-mle_Second_order = mleSecond_order(y = ydat, copX0Xg, 
-                                   copXgY, gl, ngrp, grpsize, 
-                                   hessian=F, print.level=2)
 }
 }
 \keyword{models}

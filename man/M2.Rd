@@ -84,7 +84,7 @@ categorical.PE <- PE[, 3:5]
 # one-factor copula model
 cop1f.PE <- c("joe", "joe", "rjoe", "joe", "gum")
 est1factor.PE <- mle1factor(continuous.PE, categorical.PE, 
-                            count=NULL, copF1=cop1f.PE, gl, hessian = T)
+                            count=NULL, copF1=cop1f.PE, gl, hessian = TRUE)
 #------------------------------------------------
 #                       M2  
 #------------------------------------------------
@@ -93,79 +93,7 @@ ncontinuous.PE = continuous2ordinal(continuous.PE, 5)
 # M2 statistic for the one-factor copula model:
 
 m2.1f.PE <- M2.1F(ncontinuous.PE, categorical.PE, tcount=NULL, 
-       cpar=est1factor.PE$cpar, copF1=cop1f.PE, gl)
-       
-#------------------------------------------------
-#                    GSS Data
-#------------------             -----------------
-data(GSS)
-attach(GSS)
-continuous.GSS <- cbind(INCOME,AGE)
-ordinal.GSS <- cbind(DEGREE,PINCOME,PDEGREE) 
-count.GSS <- cbind(CHILDREN,PCHILDREN)
-
-#------------------------------------------------
-#                   Estimation
-#------------------             -----------------
-# one-factor copula model
-cop1f.GSS <- c("joe","2rjoe","bvt3","bvt3",
-          "rgum","2rjoe","2rgum")
-est1factor.GSS <- mle1factor(continuous.GSS, ordinal.GSS,
-                        count.GSS, copF1=cop1f.GSS, gl, hessian = T)
-
-#two-factor copula model
-cop1.2f <- c("rgum","rjoe","bvn","1rjoe",
-           "1rjoe","rjoe","gum")
-cop2.2f <- c("gum","2rjoe","rjoe","gum",
-           "bvt5","bvn","2rgum")
-est2factor.GSS <- mle2factor(continuous.GSS, ordinal.GSS, 
-        count.GSS, copF1=cop1.2f, copF2=cop2.2f, gl, hessian = T)
-
-#------------------------------------------------
-#                 Transformation
-#------------------             -----------------
-# Transforming the continuous to ordinal data:
-
-# continuous1: Income
-continuous1 = as.integer(cut(continuous.GSS[,1], 
-c(0,10,19,29,40,100), include.lowest = T))
-continuous1 = continuous1 - 1
-
-# continuous2: AGE
-continuous2 = as.integer(cut(continuous.GSS[,2] , 
-c(0, 24, 44, 64, 100), include.lowest = T))
-continuous2 = continuous2 - 1
-
-# Combining the transformed continuous variables. 
-ncontinuous.GSS <- cbind(continuous1, continuous2)
-
-#---------------- COUNT VARIABLE -----------------
-# count1 : CHILDREN
-count1  = count.GSS[,1]
-count1[count1 > 3] = 3
-
-# count2: PCHILDREN
-count2  = count.GSS[,2]
-count2[count2 > 7] = 7
-
-# Combining both transformed count variables
-ncount.GSS = cbind(count1, count2)
-
-#------------------------------------------------
-#                       M2  
-#------------------------------------------------
-# M2 statistic for the one-factor copula model:
-
-m2.1f.GSS <- M2.1F(ncontinuous.GSS, ordinal.GSS,
-                      ncount.GSS, cpar = est1factor.GSS$cpar, 
-                      copF1 = cop1f.GSS, gl)
-
-#------------------------------------------------
-# M2 statistic for the two-factor copula model:
-
-m2.2f.GSS <- M2.2F(ncontinuous.GSS, ordinal.GSS, ncount.GSS, 
-                      cpar = est2factor.GSS$cpar, copF1 = cop1.2f,     
-                      copF2 = cop2.2f, gl)
+                  cpar=est1factor.PE$cpar, copF1=cop1f.PE, gl)
                       
 }
 }

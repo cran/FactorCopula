@@ -70,71 +70,18 @@ d <- ncol(PE)
 # factor copula model with BVN copulas
 cop1f.PE.bvn <- rep("bvn", d)
 PE.bvn1f <- mle1factor(continuous.PE, categorical.PE, 
-count=NULL, copF1=cop1f.PE.bvn, gl, hessian = T)
+count=NULL, copF1=cop1f.PE.bvn, gl, hessian = TRUE)
 
 # Selected factor copula model
 cop1f.PE <- c("joe", "joe", "rjoe", "joe", "gum")
 PE.selected1f <- mle1factor(continuous.PE, categorical.PE, 
-count=NULL, copF1=cop1f.PE, gl, hessian = T)
+count=NULL, copF1=cop1f.PE, gl, hessian = TRUE)
 #------------------------------------------------
 #                   Vuong's test
 #------------------             -----------------
 v1f.PE.selected <- vuong.1f(PE.bvn1f$cpar$f1,
 PE.selected1f$cpar$f1,cop1f.PE, continuous.PE, 
-categorical.PE, count=NULL, gl, param=F)
-
-#------------------------------------------------
-#------------------------------------------------
-#                    GSS Data
-#------------------             -----------------
-data(GSS)
-attach(GSS)
-continuous.GSS <- cbind(INCOME,AGE)
-ordinal.GSS <- cbind(DEGREE,PINCOME,PDEGREE) 
-count.GSS <- cbind(CHILDREN,PCHILDREN)
-d <- ncol(GSS)
-
-#------------------------------------------------
-#                   Estimation
-#------------------             -----------------
-# factor copula model with BVN copulas
-# one-factor copula model
-cop1f.GSS.bvn <- rep("bvn", d)
-GSS.bvn1f <- mle1factor(continuous.GSS, ordinal.GSS, 
-count.GSS, copF1 = cop1f.GSS.bvn, gl, hessian = T)
-
-# two-factor copula model
-cop1f.GSS.bvn = cop2f.GSS.bvn = rep("bvn", d)
-GSS.bvn2f <- mle2factor.bvn(continuous.GSS, ordinal.GSS,
-count.GSS, copF1 = cop1f.GSS.bvn, copF2 = cop2f.GSS.bvn, gl, SpC =7)
-
-# Selected factor copula  model
-# one-factor copula model
-cop1f.GSS <- c("joe","2rjoe","bvt3","bvt3",
-               "rgum","2rjoe","2rgum")
-GSS.selected1f <- mle1factor(continuous.GSS, ordinal.GSS, 
-count.GSS, copF1 = cop1f.GSS, gl, hessian = T)
-
-# two-factor copula model
-cop2f1.GSS <- c("rgum","rjoe","bvn","1rjoe","1rjoe","rjoe","gum")
-cop2f2.GSS <- c("gum","2rjoe","rjoe","gum","bvt5","bvn","2rgum")
-GSS.selected2f <- mle2factor(continuous.GSS, ordinal.GSS,
-count.GSS, copF1 = cop2f1.GSS, copF2 = cop2f2.GSS, gl, hessian = T)
-
-#------------------------------------------------
-#                   Vuong's test
-#------------------             -----------------
-#1-factor
-v1f.GSS.selected <- vuong.1f(GSS.bvn1f$cpar$f1, 
-GSS.selected1f$cpar$f1, cop1f.GSS, continuous.GSS, 
-ordinal.GSS, count=count.GSS, gl, param=F)
-
-#2-factor
-v2f.GSS.selected <- vuong.2f(GSS.bvn2f$cpar, 
-GSS.selected2f$cpar, cop2f1.GSS, cop2f2.GSS, 
-continuous.GSS, ordinal.GSS, count=count.GSS, gl, param=F)
-
-
+categorical.PE, count=NULL, gl, param=FALSE)
 }
 }
 

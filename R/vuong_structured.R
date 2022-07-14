@@ -17,7 +17,7 @@
 # Vector of z score, p-value, and 95% CI
 
 vuong.bifactor = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M2, 
-                          ordinal,ngrp, grpsize, nq, param=F){
+                          ordinal,ngrp, grpsize, nq, param=FALSE){
   #Gauss legendre points and weights
   gl<-gauss.quad.prob(nq)
   gln<-gl$nodes
@@ -73,7 +73,7 @@ vuong.bifactor = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M
 
 
 vuong.nested = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M2, 
-                        ordinal,ngrp, grpsize, nq, param=F){
+                        ordinal,ngrp, grpsize, nq, param=FALSE){
   #Gauss legendre points and weights
   gl<-gauss.quad.prob(nq)
   gln<-gl$nodes
@@ -129,7 +129,7 @@ vuong.nested = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M2,
 
 # M1 is nested model
 vuong.bifactor.nested = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M2, 
-                                 ordinal,ngrp, grpsize, nq, param=F){
+                                 ordinal,ngrp, grpsize, nq, param=FALSE){
   #Gauss legendre points and weights
   gl<-gauss.quad.prob(nq)
   gln<-gl$nodes
@@ -180,7 +180,7 @@ vuong.bifactor.nested = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, 
 
 # M1 is bi-factor model
 vuong.nested.bifactor = function(cpar.M1,copF0.M1, copFg.M1, cpar.M2, copF0.M2, copFg.M2, 
-                                 ordinal,ngrp, grpsize, nq, param=F){
+                                 ordinal,ngrp, grpsize, nq, param=FALSE){
   #Gauss legendre points and weights
   gl<-gauss.quad.prob(nq)
   gln<-gl$nodes

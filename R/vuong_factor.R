@@ -12,7 +12,7 @@
 # Output   ========================
 # Vector of z score, p-value, 95% CI
 
-vuong.1f= function(cpar.bvn, cpar, copF1, continuous, ordinal, count, gl, param=F){
+vuong.1f= function(cpar.bvn, cpar, copF1, continuous, ordinal, count, gl, param=FALSE){
   #Gauss legendre points and weights
   gln<-gl$nodes
   glw<-gl$weights
@@ -96,7 +96,7 @@ vuong.1f= function(cpar.bvn, cpar, copF1, continuous, ordinal, count, gl, param=
 
 
 
-vuong.2f= function(cpar.bvn, cpar, copF1, copF2, continuous, ordinal, count, gl, param=F){
+vuong.2f= function(cpar.bvn, cpar, copF1, copF2, continuous, ordinal, count, gl, param=FALSE){
   #Gauss legendre points and weights
   gln<-gl$nodes
   glw<-gl$weights

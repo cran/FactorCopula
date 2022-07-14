@@ -512,10 +512,10 @@ dtcop9=function(u,v,theta,param=F){
 #Conditional cdf for Gumbel copula
 pcond.gumbel=function ( v,u, theta , param=F){
   
-  u[u>=1]=.9999999999999
-  v[v>=1]=.9999999999999
-  u[u<=0]=.0000000000001
-  v[v<=0]=.0000000000001
+  u[u>=1]=1-1e-07
+  v[v>=1]=1-1e-07
+  u[u<=0]=1e-07
+  v[v<=0]=1e-07
   
   if(param){cpar=exp(theta)+1}else{cpar=theta}
   
@@ -639,10 +639,10 @@ dsgumbel=function(u,v,theta,param=F){
 }
 
 pcond.sgumbel=function(v,u,theta,param=F){
-  u[u==1]=.9999999
-  v[v==1]=.9999999
-  u[u==0]=.0000001
-  v[v==0]=.0000001
+  u[u>=1]=1 - 1e-07
+  v[v>=1]=1 - 1e-07
+  u[u<=0]=.0000001
+  v[v<=0]=.0000001
   u1=1-u
   v1=1-v
   cond.cdf=1-pcond.gumbel(v1,u1,theta,param)

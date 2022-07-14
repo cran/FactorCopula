@@ -46,16 +46,23 @@ Aristidis K. Nikoloulopoulos \email{a.nikoloulopoulos@uea.ac.uk}
 \donttest{
 #------------------------------------------------
 # Setting quadreture points
-nq <- 25
+nq <- 15
 gl <- gauss.quad.prob(nq)
 #------------------------------------------------
 #                     TAS Data
 #------------------             -----------------
 data(TAS)
-grp1=c(1,3,6,7,9,13,14)
-grp2=c(2,4,11,12,17)
-grp3=c(5,8,10,15,16,18,19,20)
-ydat=TAS[,c(grp1,grp2,grp3)]
+#using a subset of the data
+#group1: 1,3,6,7,9,13,14
+grp1=c(1,3)
+#group2: 2,4,11,12,17
+grp2=c(2,4)
+#group3: 5,8,10,15,16,18,19,20
+grp3=c(5,8)
+#Rearrange items within testlets
+set.seed(123)
+i=sample(1:nrow(TAS),500)
+ydat=TAS[i,c(grp1,grp2,grp3)]
 
 #size of each group
 g1=length(grp1)
@@ -63,13 +70,10 @@ g2=length(grp2)
 g3=length(grp3)
 grpsize=c(g1,g2,g3)
 
-# listing the possible copula candidates:
-copnames=c("bvn", "bvt2", "bvt3",
-"gum", "rgum")
+# listing possible copula candidates:
+copnames=c("bvt2","bvt3")
 
 Bifactor_model = selectBifactor(ydat, grpsize, copnames, gl)
-Second_order_model = selectSecond_order(ydat, grpsize, copnames, gl)
-
 }
 }
 \keyword{multivariate}
