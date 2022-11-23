@@ -1,3 +1,209 @@
+pbvtcop1=function (u, v, rho) 
+{
+  nu = 1
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+pbvtcop2=function (u, v, rho) 
+{
+  nu = 2
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar )
+  out
+}
+
+pbvtcop3=function (u, v, rho) 
+{
+  nu = 3
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+pbvtcop4=function (u, v, rho) 
+{
+  nu = 4
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+
+pbvtcop5=function (u, v, rho) 
+{
+  nu = 5
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+
+pbvtcop6=function (u, v, rho) 
+{
+  nu = 6
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+
+pbvtcop7=function (u, v, rho) 
+{
+  nu = 7
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+pbvtcop8=function (u, v, rho) 
+{
+  nu = 8
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+pbvtcop9=function (u, v, rho) 
+{
+  nu = 9
+  cpar=c(rho,nu)
+  u[u >= 1] = 0.9999999
+  v[v >= 1] = 0.9999999
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  xt = qt(u, nu)
+  yt = qt(v, nu)
+  out = pbvt(xt, yt, cpar)
+  out
+}
+
+pfrank=function (u, v, cpar) 
+{
+  cpar1 = 1 - exp(-cpar)
+  tem1 = exp(-cpar * u)
+  tem2 = exp(-cpar * v)
+  tem = cpar1 - (1 - tem1) * (1 - tem2)
+  cdf = (-log(tem/cpar1)/cpar)
+  cdf
+}
+
+pgumbel=function (u, v, cpar) 
+{
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  u[u >= 1] = 1
+  v[v >= 1] = 1
+  l1 = -log(u)
+  l2 = -log(v)
+  tem1 = (l1^cpar)
+  tem2 = (l2^cpar)
+  sm = tem1 + tem2
+  tem = sm^(1/cpar)
+  cdf = exp(-tem)
+  cdf
+}
+
+
+psgumbel=function (u, v, cpar) 
+{
+  u[u >= 1] = 1 - 1e-07
+  v[v >= 1] = 1 - 1e-07
+  u[u <= 0] = 0
+  v[v <= 0] = 0
+  l1 = -log(1 - u)
+  l2 = -log(1 - v)
+  tem1 = (l1^cpar)
+  tem2 = (l2^cpar)
+  sm = tem1 + tem2
+  tem = sm^(1/cpar)
+  cdf = exp(-tem)
+  cdf + u + v - 1
+}
+
+pgumbel.90=function (u, v, cpar) 
+{
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  u[u >= 1] = 1
+  v[v >= 1] = 1
+  l1 = -log(1-u)
+  l2 = -log(v)
+  tem1 = (l1^cpar)
+  tem2 = (l2^cpar)
+  sm = tem1 + tem2
+  tem = sm^(1/cpar)
+  cdf = exp(-tem)
+  v-cdf
+}
+
+
+pgumbel.270=function (u, v, cpar) 
+{
+  u[u <= 0] = 1e-07
+  v[v <= 0] = 1e-07
+  u[u >= 1] = 1
+  v[v >= 1] = 1
+  l1 = -log(u)
+  l2 = -log(1-v)
+  tem1 = (l1^cpar)
+  tem2 = (l2^cpar)
+  sm = tem1 + tem2
+  tem = sm^(1/cpar)
+  cdf = exp(-tem)
+  u-cdf
+}
+
+
 #Conditional cdf for Gaussian copula
 pcond.bvn=function(v,u,theta,param=F){
   u[u==1]=.9999999999999
@@ -512,10 +718,10 @@ dtcop9=function(u,v,theta,param=F){
 #Conditional cdf for Gumbel copula
 pcond.gumbel=function ( v,u, theta , param=F){
   
-  u[u>=1]=1-1e-07
-  v[v>=1]=1-1e-07
-  u[u<=0]=1e-07
-  v[v<=0]=1e-07
+  u[u>=1]=.9999999999999
+  v[v>=1]=.9999999999999
+  u[u<=0]=.0000000000001
+  v[v<=0]=.0000000000001
   
   if(param){cpar=exp(theta)+1}else{cpar=theta}
   
@@ -639,10 +845,10 @@ dsgumbel=function(u,v,theta,param=F){
 }
 
 pcond.sgumbel=function(v,u,theta,param=F){
-  u[u>=1]=1 - 1e-07
-  v[v>=1]=1 - 1e-07
-  u[u<=0]=.0000001
-  v[v<=0]=.0000001
+  u[u==1]=.9999999
+  v[v==1]=.9999999
+  u[u==0]=.0000001
+  v[v==0]=.0000001
   u1=1-u
   v1=1-v
   cond.cdf=1-pcond.gumbel(v1,u1,theta,param)

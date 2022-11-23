@@ -1,4 +1,5 @@
 \name{M2.StructuredFactor}
+\alias{M2.StructuredFactor}
 \alias{M2Bifactor}
 \alias{M2Second_order}
 \title{Goodness-of-fit of bi-factor and second-order copula models for item response data}

@@ -1,4 +1,5 @@
 \name{transformation}
+\alias{transformation}
 \alias{continuous2ordinal}
 \alias{count2ordinal}
 \title{

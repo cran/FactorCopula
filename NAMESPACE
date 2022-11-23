@@ -1,10 +1,18 @@
+useDynLib(FactorCopula)
 export(mle1factor, mle2factor, mle2factor.bvn, M2.1F, 
        M2.2F, r1factor, r2factor, 
        select1F, select2F, continuous2ordinal, count2ordinal, 
        semicorr, discrepancy, par2tau, tau2par, vuong.1f, vuong.2f,
        M2Second_order, M2Bifactor, mleSecond_order, mleBifactor,
        selectSecond_order, selectBifactor, 
-       rSecond_order, rBifactor,vuong_structured)
+       rSecond_order, rBifactor,vuong_structured,
+       
+       mle1FactorTree, mle2FactorTree, selectFactorTrVine,
+       r2factortree, r1factortree,copselect1FactorTree,
+       copselect2FactorTree, vuong_FactorTree)
+
+
+export(pbvt,pbnorm,polychoric0)
 
 import(statmod)
 import(abind)
@@ -12,6 +20,7 @@ import(utils)
 import(polycor)
 import(VineCopula)
 importFrom(matlab,meshgrid)
+import(igraph)
 importFrom("stats", "df", "dnbinom", "dnorm", "dt", "integrate",
              "na.omit", "nlm", "pchisq", "pnbinom", "pnorm", "pt",
              "qnorm", "qt", "sd", "uniroot", "var", "runif", 

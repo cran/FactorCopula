@@ -1,4 +1,5 @@
 \name{mle.Factor}
+\alias{mle.Factor}
 \alias{mle1factor}
 \alias{mle2factor}
 \alias{mle2factor.bvn}
@@ -35,7 +36,7 @@ mle2factor.bvn(continuous, ordinal, count, copF1, copF2, gl, SpC, print.level)
 
 
 \value{A list containing the following components:
-\item{cutpoints}{The estimated univariate cutpoints (fitting the univariate probit model).}
+\item{cutpoints}{The estimated univariate cutpoints.}
 \item{negbinest}{The estimated univariate parametes for the count responses (fitting the negative binomial distribution).}
 \item{loglik}{The maximized joint log-likelihood.}
 \item{cpar}{Estimated copula parameters in a list form.}
@@ -119,5 +120,6 @@ est1factor.GSS <- mle1factor(continuous.GSS, ordinal.GSS,
 }
 \keyword{models}
 \keyword{multivariate}
+\keyword{maximum likelihood}
 
 

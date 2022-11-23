@@ -1,4 +1,5 @@
 \name{mapping}
+\alias{mapping}
 \alias{par2tau}
 \alias{tau2par}
 \title{

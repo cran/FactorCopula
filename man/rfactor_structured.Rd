@@ -1,8 +1,9 @@
 \name{rStructuredFactor}
+\alias{rStructuredFactor}
 \alias{rBifactor}
 \alias{rSecond_order}
 \title{Simulation of bi-factor and second-order copula models for item response data}
-\description{Simulating dependent item response data from the bi-factor and second-order copula models for item response data.}
+\description{Simulating item response data from the bi-factor and second-order copula models for item response data.}
 \usage{
 rBifactor(n, d, grpsize, categ, copnames1,copnames2, theta1, theta2)
 rSecond_order(n, d, grpsize, categ, copnames1, copnames2, theta1, theta2)

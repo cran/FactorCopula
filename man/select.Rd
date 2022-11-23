@@ -1,4 +1,5 @@
 \name{Select.Factor}
+\alias{Select.Factor}
 \alias{select1F}
 \alias{select2F}
 \title{Model selection of the factor copula models for mixed data}

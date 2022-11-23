@@ -1,4 +1,5 @@
 \name{mle.StructuredFactor}
+\alias{mle.StructuredFactor}
 \alias{mleBifactor}
 \alias{mleSecond_order}
 \title{Maximum likelihood estimation of the bi-factor and second-order copula models for item response data}
@@ -29,7 +30,7 @@ hessian, print.level)
 
 
 \value{A list containing the following components:
-\item{cutpoints}{The estimated univariate cutpoints (fitting the univariate probit model).}
+\item{cutpoints}{The estimated univariate cutpoints.}
 \item{taus}{The estimated copula parameters in Kendall's tau scale.}
 \item{SEs}{The SEs of the Kendall's tau estimates.}
 \item{loglik}{The maximized joint log-likelihood.}
@@ -101,5 +102,6 @@ mle_Bifactor =  mleBifactor(y = ydat, copX0, copXg, gl, ngrp, grpsize, hessian=F
 }
 \keyword{models}
 \keyword{multivariate}
+\keyword{maximum likelihood}
 
 

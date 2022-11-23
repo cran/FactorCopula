@@ -1,4 +1,5 @@
 \name{M2.Factor}
+\alias{M2.Factor}
 \alias{M2.1F}
 \alias{M2.2F}
 \title{Goodness-of-fit of factor copula models for mixed data}

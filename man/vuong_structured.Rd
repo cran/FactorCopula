@@ -1,4 +1,5 @@
 \name{Vuong.StructuredFactor}
+\alias{Vuong.StructuredFactor}
 \alias{vuong_structured}
 \title{
 Vuong's test for the comparison of bi-factor and second-order copula models}
@@ -44,7 +45,7 @@ Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Bi-factor and second-order copula models for item response data.
 \emph{Arxiv e-prints}, <arXiv:2102.10660>. \url{https://arxiv.org/abs/2102.10660}.
 
-Vuong, Q.~H. (1989).
+Vuong, Q.H. (1989).
 Likelihood ratio tests for model selection and non-nested hypotheses.
 \emph{Econometrica}, \bold{57}, 307--333. 
 }

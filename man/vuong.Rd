@@ -1,4 +1,5 @@
 \name{Vuong.Factor}
+\alias{Vuong.Factor}
 \alias{vuong.1f}
 \alias{vuong.2f}
 \title{
@@ -39,7 +40,7 @@ Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
 Factor copula models for mixed data.
 \emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 
-Vuong, Q.~H. (1989).
+Vuong, Q.H. (1989).
 Likelihood ratio tests for model selection and non-nested hypotheses.
 \emph{Econometrica}, \bold{57}, 307--333. 
 }

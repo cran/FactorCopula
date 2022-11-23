@@ -1,8 +1,9 @@
-\name{rFactor}
+\name{rfactor}
+\alias{rfactor}
 \alias{r1factor}
 \alias{r2factor}
 \title{Simulation of factor copula models for mixed continuous and discrete data}
-\description{Simulating dependent standard uniform and ordinal response data from factor copula models.}
+\description{Simulating standard uniform and ordinal response data from factor copula models.}
 \usage{
 r1factor(n, d1, d2, categ, theta, copF1)
 r2factor(n, d1, d2, categ, theta, delta, copF1, copF2)

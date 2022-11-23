@@ -1,4 +1,5 @@
 \name{Select.StructuredFactor}
+\alias{Select.StructuredFactor}
 \alias{selectBifactor}
 \alias{selectSecond_order}
 \title{Model selection of the bi-factor and second-order copula models for item response data}
