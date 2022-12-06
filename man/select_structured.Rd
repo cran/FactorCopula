@@ -32,10 +32,9 @@ selectSecond_order(y, grpsize, copnames, gl)
 
 
 \references{
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2021)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2022)
 Bi-factor and second-order copula models for item response data.
-\emph{Arxiv e-prints}, <arXiv:2102.10660>. \url{https://arxiv.org/abs/2102.10660}.
-
+\emph{Psychometrika}. \doi{doi:10.1007/s11336-022-09894-2}.
 }
 \author{
 Sayed H. Kadhem \email{s.kadhem@uea.ac.uk}\cr

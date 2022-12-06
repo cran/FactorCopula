@@ -105,7 +105,7 @@ copselect2Ftree=function(y, A, f1copnames,f2copnames, vinecopnames, gl, d){
     cop2Ftree<-copMat[j,]
     copulas.all=c(f1copnames,f2copnames,cop2Ftree)
     mod2Ftree=list(estimate=rep(NA,d),minimum=NA)
-    try(mod2Ftree<-mle2FactorTree(y,A, cop=copulas.all, gl,SpC=NULL,
+    try(mod2Ftree<-mle2FactorTree(y,A, cop=copulas.all, gl,
                               hessian = F, print.level = 0),TRUE)
     
     inner1[j,]=c(mod2Ftree$loglik,mod2Ftree$taus,cop2Ftree)

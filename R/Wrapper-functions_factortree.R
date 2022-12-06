@@ -130,7 +130,7 @@ mle1FactorTree=function(y, A, cop, gl, hessian = F, print.level = 0)
 # 2) "loglik": log-likelihood value.
 # 3) "taus": estimated Kendall taus.
 # 4) "SEs": Standard errors of the estimated taus.
-mle2FactorTree=function(y, A, cop, gl, SpC=NULL, hessian = F, print.level = 0) 
+mle2FactorTree=function(y, A, cop, gl, hessian = F, print.level = 0) 
 {
   gln <- gl$nodes
   glw <- gl$weights
@@ -141,7 +141,7 @@ mle2FactorTree=function(y, A, cop, gl, SpC=NULL, hessian = F, print.level = 0)
   initpar = initval_tree(cop)
   mle <- nlm(loglk_f2vine,p=initpar,ydat=y, A, 
              cutp=unifcuts(y),nq=nq,gln,glw,
-             copnm=cop,SpC,print.level=print.level,hessian=hessian)
+             copnm=cop,print.level=print.level,hessian=hessian)
   if (hessian == TRUE) {
     SEtaus = rep(NA, 3*d-1 )
     try(SEtaus <- sqrt(diag(solve(mle$h))), T)

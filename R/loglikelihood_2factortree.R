@@ -80,7 +80,7 @@ factor2vine_lk=function(ydat,A,pcondcopf1,pcondcopf2,vinepcop,cutp,th,nq,gln,glw
 
 
 # purpose: log likelihood of factor tree for item response
-loglk_f2vine= function(tau,ydat,A,cutp,nq,gln,glw,copnm,SpC,param=F)
+loglk_f2vine= function(tau,ydat,A,cutp,nq,gln,glw,copnm,param=F)
 {
   d=ncol(ydat)
   boundlimits=LUbound(copnm)
@@ -88,8 +88,8 @@ loglk_f2vine= function(tau,ydat,A,cutp,nq,gln,glw,copnm,SpC,param=F)
                 y=boundlimits))>0){return(1.e10)}
   theta=mapply(function(x,y) tau2par(x,y),x=copnm,y=tau)
   ntheta=theta
-  if(!is.null(SpC)){ #ARIS CHANGE HERE 
-    ntheta[ (d + SpC) ]=0}
+  #if(!is.null(SpC)){ #ARIS CHANGE HERE 
+  #  ntheta[ (d + SpC) ]=0}
   
   cops=copulas_factortree(copnm[1:d],copnm[(d+1):(2*d)],copnm[(2*d+1):(2*d+d-1)])
   lk=factor2vine_lk(ydat,A,cops$pcondF1,cops$pcondF2,cops$copvine,cutp,

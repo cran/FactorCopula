@@ -16,8 +16,8 @@ copselect2FactorTree(y, A, copnames, gl)
 \item{rmat}{Polychoric correlation matrix of y.}
 
 \item{alg}{1-truncated vine selection using partial and polychoric correlations. Choose a number from (1,2,3). 
-\bold{1}: Factor correlation selection algorithm for 1-factor tree copula.
-\bold{2}: Factor correlation selection algorithm for 2-factor tree copula.
+\bold{1}: Partial correlation selection algorithm for 1-factor tree copula.
+\bold{2}: Partial correlation selection algorithm for 2-factor tree copula.
 \bold{3}: Polychoric correlation selection algorithm for 1-factor/2-factor tree copulas, here any other correlation matrix (rmat) can be used.}
 
 \item{A}{\eqn{d \times d} vine array with \eqn{1,...,d} on diagonal, note only the first row and diagnoal values are used for the 1-truncated vine model} 
@@ -36,9 +36,8 @@ copselect2FactorTree(y, A, copnames, gl)
 \item{``estimated taus''}{The estimated copula parameters in Kendall's tau scale.}
 \item{F1treeA}{Vine array for the 1-factor tree copula.}
 \item{F2treeA}{Vine array for the 2-factor tree copula.}
-\item{pmat_f1}{Factor correlation matrix for the 1-factor tree copula; \eqn{(Y_{j1}Y_{j2}|V_1)}}
-\item{pmat_f2}{Factor correlation matrix for the 2-factor tree copula;
-\eqn{(Y_{j1}Y_{j2}|V_1V_2)}}
+\item{pmat_f1}{Partial correlation matrix for the 1-factor tree copula.}
+\item{pmat_f2}{Partial correlation matrix for the 2-factor tree copula.}
 }
 
 \details{
@@ -46,7 +45,7 @@ The model selection involves two separate steps. At the first step we select the
 \eqn{\sum_{\mathcal{E}}\log(1-r_{jk}^2).}
 The minimum spanning tree algorithm of Prim (1957)
 guarantees to find the optimal solution when edge weights between nodes  are given by \eqn{\log(1-r_{jk}^2)}. 
-We use two  different measures of pairwise dependence \eqn{r_{jk}}. The first measure is the estimated  polychoric correlation (Olsson, 1979). The second measures of pairwise dependence    is  the correlation between each of the items and the first factor along with the partial correlation  between each of the items and the second  factor  given the first factor (Nikoloulopoulos and Joe, 2015). We call polychoric and factor correlation selection algorithm when the pairwise dependence is the polychoric and factor correlation, respectively.
+We use two  different measures of pairwise dependence \eqn{r_{jk}}. The first measure is the estimated  polychoric correlation (Olsson, 1979). The second measures of pairwise dependence is  the partial correlation which is based on the  factor copula models in   Nikoloulopoulos and Joe (2015) with BVN copulas;  for more details see Kadhem and Nikoloulopoulos (2022).  We call polychoric and partial correlation selection algorithm when the pairwise dependence is the polychoric and partial correlation, respectively.
 
 
 At the the second step, we sequentially select suitable bivariate copulas to account for any tail dependence/asymmetry. We start from the 1st tree that includes copulas connecting the observed variables to the first factor and then we iterate over a set of copula candidates and select suitable bivariate copulas in the subsequent trees. We select only one copula family for all the edges in each tree to ease interpretation.
@@ -62,7 +61,7 @@ Fontenla, M. (2014).
 R package version 1.0.
 
 
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2022b)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2022)
 Factor tree copula models for item response data.
 \emph{Arxiv e-prints}, <arXiv: 2201.00339>. \url{https://arxiv.org/abs/2201.00339}.
 
@@ -85,7 +84,7 @@ Aristidis K. Nikoloulopoulos \email{a.nikoloulopoulos@uea.ac.uk}
 \donttest{
 #------------------------------------------------
 # Setting quadreture points
-nq <- 25
+nq <- 5
 gl <- gauss.quad.prob(nq)
 #------------------------------------------------
 #                    PTSD Data
@@ -101,8 +100,7 @@ A.polychoric=selectFactorTrVine(y=ydat,rmat,alg=3)
 
 #selecting bivariate copulas for the 1-2-factor tree
 # listing the possible copula candidates:
-copnames=c("bvn", "bvt2", "bvt3",
-"gum", "rgum")
+copnames=c("gum", "rgum")
 
 f1tree_model = copselect1FactorTree(ydat, A.polychoric$VineTreeA, 
 copnames, gl)

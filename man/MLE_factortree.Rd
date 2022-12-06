@@ -6,7 +6,7 @@
 \description{We use a two-stage estimation approach  toward the estimation  of  factor tree copula models for item response data.}
 \usage{
 mle1FactorTree(y, A, cop, gl, hessian, print.level) 
-mle2FactorTree(y, A, cop, gl, SpC, hessian, print.level) 
+mle2FactorTree(y, A, cop, gl, hessian, print.level) 
 }
 \arguments{
 \item{y}{\eqn{n \times d} matrix with the ordinal reponse data, where \eqn{n} and \eqn{d} is the number of observations and ordinal variables, respectively.}
@@ -17,7 +17,7 @@ mle2FactorTree(y, A, cop, gl, SpC, hessian, print.level)
 
 \item{gl}{Gauss legendre quardrature nodes and weights.}
 
-\item{SpC}{Special case for the 2-factor tree copula model with BVN copulas. Select a bivariate copula at the 2nd factor to be fixed to independence. e.g. "SpC = 1" to set the first copula at the 2nd factor to independence.  }
+
 \item{hessian}{If TRUE, the hessian of the negative log-likelihood is calculated during the minimization process.}
 
 \item{print.level}{Determines the level of printing which is done during the minimization process; same as in \code{nlm}.}
@@ -56,7 +56,7 @@ Aristidis K. Nikoloulopoulos \email{a.nikoloulopoulos@uea.ac.uk}
 \donttest{
 #------------------------------------------------
 # Setting quadreture points
-nq <- 25  
+nq <- 5  
 gl <- gauss.quad.prob(nq) 
 #------------------------------------------------
 #                    PTSD Data
@@ -77,8 +77,8 @@ A.polychoric=selectFactorTrVine(y=ydat,rmat,alg=3)
 copf1 <- rep("frk",d)
 coptree <- rep("frk",d-1)
 cop <- c(copf1,coptree)
-mle1FactorTree(y=ydat, A=A.polychoric$VineTreeA, cop, 
-gl, hessian=F, print.level=2) 
+est1factortree <- mle1FactorTree(y=ydat, A=A.polychoric$VineTreeA, cop, 
+gl, hessian=FALSE, print.level=2) 
 
 #---------------- 2-factor tree  ----------------
 # 2-factor tree copula model
@@ -88,7 +88,7 @@ coptree <- rep("frk",d-1)
 cop <- c(copf1,copf2,coptree)
 
 est2factortree <- mle2FactorTree(y=ydat, A=A.polychoric$VineTreeA, 
-cop, gl, SpC=NULL, hessian=FALSE, print.level=2)
+cop, gl, hessian=FALSE, print.level=2)
      
 }
 }

@@ -1,4 +1,4 @@
-useDynLib(FactorCopula)
+useDynLib(FactorCopula, .registration = TRUE)
 export(mle1factor, mle2factor, mle2factor.bvn, M2.1F, 
        M2.2F, r1factor, r2factor, 
        select1F, select2F, continuous2ordinal, count2ordinal, 
