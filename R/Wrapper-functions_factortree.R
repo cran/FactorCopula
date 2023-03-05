@@ -35,7 +35,7 @@ r1factortree=function(n, d, A, copname1, copnametree, theta1, delta,K){
   qcondvine=qcond_cop(copnametree)
   u = simfacvine1(nsim=n, A, parfactor=theta1, 
                           parvine=delta, qcondfactor,qcondvine)
-  y = continuous2ordinal(u,K)
+  y = continuous2ordinal.sim(u,K)
 }
 
 r2factortree=function(n, d, A, copname1, copname2, copnametree,
@@ -46,7 +46,7 @@ r2factortree=function(n, d, A, copname1, copname2, copnametree,
   qcondvine=qcond_cop(copnametree)
   u = simfacvine2(nsim=n, A, parfactor1=theta1,parfactor2=theta2, 
                               parvine=delta, qcondfactor1,qcondfactor2,qcondvine)
-  y = continuous2ordinal(u,K)
+  y = continuous2ordinal.sim(u,K)
 }
 
 #> A

@@ -41,9 +41,9 @@ A vector containing the following components:
 Joe, H. (2014).
 \emph{Dependence Modelling with Copulas}. Chapman and Hall/CRC.
 
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2022)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2023)
 Bi-factor and second-order copula models for item response data.
-\emph{Psychometrika}. \doi{doi:10.1007/s11336-022-09894-2}.
+\emph{Psychometrika}, \bold{88}, 132--157. \doi{doi:10.1007/s11336-022-09894-2}.
 
 Vuong, Q.H. (1989).
 Likelihood ratio tests for model selection and non-nested hypotheses.

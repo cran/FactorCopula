@@ -3,24 +3,24 @@
 \docType{package}
 \title{Factor, bi-factor, second-order and factor tree copula models}
 \description{
-Estimation, model selection and goodness-of-fit of (1) factor copula models for mixed continuous and discrete data in Kadhem and Nikoloulopoulos (2021); (2) bi-factor and second-order copula models for item response data in Kadhem and Nikoloulopoulos (2022a); (3) factor tree copula models for item response data in Kadhem and Nikoloulopoulos (2022b).
+Estimation, model selection and goodness-of-fit of (1) factor copula models for mixed continuous and discrete data in Kadhem and Nikoloulopoulos (2021); (2) bi-factor and second-order copula models for item response data in Kadhem and Nikoloulopoulos (2023); (3) factor tree copula models for item response data in Kadhem and Nikoloulopoulos (2022).
 
 }
 \details{
 This package contains \R functions for: 
 \itemize{
-\item diagnostics based on semi-correlations (Kadhem and Nikoloulopoulos, 2021, 2022a; Joe, 2014) to detect tail dependence or tail asymmetry; 
-\item diagnostics  to show that a  dataset  has a factor structure based on linear factor analysis (Kadhem and Nikoloulopoulos, 2021,2022a; Joe, 2014);
+\item diagnostics based on semi-correlations (Kadhem and Nikoloulopoulos, 2021, 2023; Joe, 2014) to detect tail dependence or tail asymmetry; 
+\item diagnostics  to show that a  dataset  has a factor structure based on linear factor analysis (Kadhem and Nikoloulopoulos, 2021,2023; Joe, 2014);
 \item estimation of the factor copula models in Krupskii and Joe (2013), Nikoloulopoulos and Joe (2015), and Kadhem and Nikoloulopoulos (2021);
-\item estimation of the bi-factor and second-order copula models for item response data in Kadhem and Nikoloulopoulos (2022a);
-\item estimation of the factor tree copula models for item response data in Kadhem and Nikoloulopoulos (2022b);
+\item estimation of the bi-factor and second-order copula models for item response data in Kadhem and Nikoloulopoulos (2023);
+\item estimation of the factor tree copula models for item response data in Kadhem and Nikoloulopoulos (2022);
 \item model selection of the factor copula models in Krupskii and Joe (2013), Nikoloulopoulos and Joe (2015); 
-\item model selection of the bifactor and second-order copula models in  Kadhem and Nikoloulopoulos (2022a);
-\item model selection of the factor tree copula models in  Kadhem and Nikoloulopoulos (2022b);
+\item model selection of the bifactor and second-order copula models in  Kadhem and Nikoloulopoulos (2023);
+\item model selection of the factor tree copula models in  Kadhem and Nikoloulopoulos (2022);
 
 \item goodness-of-fit of the factor copula models in Krupskii and Joe (2013), Nikoloulopoulos and Joe (2015), and Kadhem and Nikoloulopoulos (2021) using the \eqn{M_2} statistic (Maydeu-Olivares and Joe, 2006). Note that the continuous  and count data have to be transformed to ordinal;
 
-\item  goodness-of-fit of the bi-factor and second-order copula models in Kadhem and Nikoloulopoulos (2022a) using the \eqn{M_2} statistic (Maydeu-Olivares and Joe, 2006).  
+\item  goodness-of-fit of the bi-factor and second-order copula models in Kadhem and Nikoloulopoulos (2023) using the \eqn{M_2} statistic (Maydeu-Olivares and Joe, 2006).  
 }
 
 
@@ -46,9 +46,9 @@ Factor copula models for mixed data.
 \emph{British Journal of Mathematical and Statistical Psychology}, \bold{74}, 365--403. \doi{10.1111/bmsp.12231}.
 
 
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2022a)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2023)
 Bi-factor and second-order copula models for item response data.
-\emph{Psychometrika}. \doi{doi:10.1007/s11336-022-09894-2}.
+\emph{Psychometrika}, \bold{88}, 132--157. \doi{doi:10.1007/s11336-022-09894-2}.
 
 Kadhem, S.H. and Nikoloulopoulos, A.K. (2022)
 Factor tree copula models for item response data.

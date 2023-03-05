@@ -39,9 +39,9 @@ M2Second_order(y,cpar, copnames1, copnames2, gl, ngrp, grpsize)
 }
 
 \references{
-Kadhem, S.H. and Nikoloulopoulos, A.K. (2022)
+Kadhem, S.H. and Nikoloulopoulos, A.K. (2023)
 Bi-factor and second-order copula models for item response data.
-\emph{Psychometrika}. \doi{doi:10.1007/s11336-022-09894-2}.
+\emph{Psychometrika}, \bold{88}, 132--157. \doi{doi:10.1007/s11336-022-09894-2}.
 
 Maydeu-Olivares, A. and Joe, H. (2006).
 Limited information goodness-of-fit testing in multidimensional contingency tables.

@@ -33,6 +33,8 @@ continuous2ordinal.sim = function(u, categ){
   if( is.matrix(u) == FALSE ){u=matrix(u)}
   d= ncol(u)
   cutpts=matrix(rep((seq(1:(categ-1))/(categ)),d),ncol=d)
+  #cutpts=matrix(rep(c(0.1,0.3,0.7,0.8),d),ncol=d)
+  #cutpts=matrix(rep(c(0.2,0.8),d),ncol=d)
   ydat = matrix(NA, ncol = d, nrow = nrow(u))
   for (j in 1:d) {
     y = cut(u[, j], c(0, cutpts[, j], 1))
